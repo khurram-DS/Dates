@@ -80,9 +80,9 @@ in their work.
           # get extension and read file
           extension = file.name.split('.')[1]
           if extension.upper() == 'CSV':
-            df = pd.read_csv(file,error_bad_lines=False)
+            df = pd.read_csv(file)
           elif extension.upper() == 'XLSX':
-            df = pd.read_excel(file,error_bad_lines=False)
+            df = pd.read_excel(file)
           
           return df
         file = st.file_uploader("Upload file", type=['csv' 
@@ -156,9 +156,9 @@ Minutes, seconds, Day of year
           # get extension and read file
           extension = file.name.split('.')[1]
           if extension.upper() == 'CSV':
-            df = pd.read_csv(file,error_bad_lines=False)
+            df = pd.read_csv(file)
           elif extension.upper() == 'XLSX':
-            df = pd.read_excel(file,error_bad_lines=False)
+            df = pd.read_excel(file)
           
           return df
         file = st.file_uploader("Upload file", type=['csv' 
@@ -242,9 +242,9 @@ Minutes, seconds, Day of year
           # get extension and read file
           extension = file.name.split('.')[1]
           if extension.upper() == 'CSV':
-            df = pd.read_csv(file,error_bad_lines=False)
+            df = pd.read_csv(file)
           elif extension.upper() == 'XLSX':
-            df = pd.read_excel(file,error_bad_lines=False)
+            df = pd.read_excel(file)
           
           return df
         file = st.file_uploader("Upload file", type=['csv' 
