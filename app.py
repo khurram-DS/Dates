@@ -108,7 +108,7 @@ in their work.
             
         st.write("**2. Download the clean Data in Format of YYYY:MM:DD**")
         if st.checkbox("Dates in the Format of YYYY-MM-DD"):
-            df[selected_columns]=df[selected_columns].apply(pd.to_datetime,errors='coerce')
+            df[selected_columns]=df[selected_columns].apply(pd.to_datetime,errors='coerce''%Y-%m-%d %H:%M:%S.%f')
             
            # df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d") 
             st.write(df.head())
