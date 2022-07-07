@@ -102,8 +102,8 @@ in their work.
             
             st.subheader("Fix your Dates")
             all_columns=df.columns.to_list()
-            selected_columns= st.multiselect("Select Date Columns You want to fix", all_columns)
-            #df[selected_columns]=pd.to_datetime(df[selected_columns],errors='coerce')
+            selected_columns= st.selectbox("Select Date Columns You want to fix", all_columns)
+            
           
             
         st.write("**2. Download the clean Data in Format of YYYY:MM:DD**")
