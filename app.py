@@ -108,9 +108,9 @@ in their work.
             
         st.write("**2. Download the clean Data in Format of YYYY:MM:DD**")
         if st.checkbox("Dates in the Format of YYYY-MM-DD"):
-            df[selected_columns]=df[selected_columns].apply(pd.to_datetime,errors='coerce')
-            st.write(df.dtypes)
-            df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d") 
+            df[selected_columns]=df[selected_columns].apply(pd.to_datetime,errors='coerce').dt.strftime("%Y-%m-%d") 
+            
+           # df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d") 
             st.write(df.head())
             st.text("Download the Above Data table by clicking on Download CSV")
             
