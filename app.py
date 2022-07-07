@@ -108,7 +108,7 @@ in their work.
             
         st.write("**2. Download the clean Data in Format of YYYY:MM:DD**")
         if st.checkbox("Dates in the Format of YYYY-MM-DD"):
-            df[selected_columns]=df[selected_columns].apply(pd.to_datetime,errors='coerce',format='%Y-%m-%d %H:%M:%S')
+            df[selected_columns]=df[selected_columns].apply(pd.to_datetime,errors='coerce')
             
            # df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d") 
             st.write(df.head())
@@ -119,7 +119,7 @@ in their work.
             
             
             
-            st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
+            
         st.write("**4. Lets arrange our Dates in Ascending order**")
         
         if st.checkbox("Arranging Dates in Ascending order"):
