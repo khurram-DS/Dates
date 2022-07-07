@@ -102,7 +102,7 @@ in their work.
             
             st.subheader("Fix your Dates")
             all_columns=df.columns.to_list()
-            selected_columns= st.selectbox("Select Date Columns You want to fix", all_columns)
+            selected_columns= st.multiselect("Select Date Columns You want to fix", all_columns)
             
           
             
