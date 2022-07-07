@@ -119,10 +119,10 @@ in their work.
         if st.checkbox("Dates in the Format of YYYY-MM-DD HH:MM:SS"):
             df[selected_columns]=pd.to_datetime(df[selected_columns],errors='coerce')
             df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d %H:%M:%S")
-            df=df
+            
             st.write(df.head())
             st.text("Download the Above Data table by clicking on Download CSV")
-            df=df
+            df=df.copy(deep=True)
             st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
         st.write("**4. Lets arrange our Dates in Ascending order**")
         
