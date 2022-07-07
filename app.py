@@ -102,7 +102,7 @@ in their work.
             
             st.subheader("Fix your Dates")
             all_columns=df.columns.to_list()
-            selected_columns= st.selectbox("Select Date Columns You want to fix", all_columns)
+            selected_columns= st.multiselect("Select Date Columns You want to fix", all_columns)
             #df[selected_columns]=pd.to_datetime(df[selected_columns],errors='coerce')
           
             
@@ -299,9 +299,9 @@ Minutes, seconds, Day of year
           # get extension and read file
           extension = file.name.split('.')[1]
           if extension.upper() == 'CSV':
-            df = pd.read_csv(file,error_bad_lines=False)
+            df = pd.read_csv(file)
           elif extension.upper() == 'XLSX':
-            df = pd.read_excel(file,error_bad_lines=False)
+            df = pd.read_excel(file)
           
           return df
         file = st.file_uploader("Upload file", type=['csv' 
