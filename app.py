@@ -109,20 +109,20 @@ in their work.
         st.write("**2. Download the clean Data in Format of YYYY:MM:DD**")
         if st.checkbox("Dates in the Format of YYYY-MM-DD"):
             df[selected_columns]=pd.to_datetime(df[selected_columns],errors='coerce')
-            df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d")
-            
+            df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d") 
             st.write(df.head())
             st.text("Download the Above Data table by clicking on Download CSV")
-           
+            df[selected_columns]=df[selected_columns].copy(deep=True)
             st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
         st.write("**3. Download the clean Data in Format of YYYY:MM:DD HH:MM:SS**")
         if st.checkbox("Dates in the Format of YYYY-MM-DD HH:MM:SS"):
             df[selected_columns]=pd.to_datetime(df[selected_columns],errors='coerce')
             df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d %H:%M:%S")
-            
             st.write(df.head())
             st.text("Download the Above Data table by clicking on Download CSV")
+            
             df[selected_columns]=df[selected_columns].copy(deep=True)
+            
             st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
         st.write("**4. Lets arrange our Dates in Ascending order**")
         
