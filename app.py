@@ -128,7 +128,7 @@ in their work.
             if st.checkbox("Click here for Date Arranged in YYYY-MM-DD HH:MM:SS Format "):
                 df[selected_columns] = df[selected_columns].astype('datetime64[ns]')
                 df.sort_values(by=selected_columns, inplace=True,ignore_index=True)
-                df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d %H:%M:%S")
+                #df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d %H:%M:%S")
                 st.write(df.head())
                 st.text("Download the Above Data table by clicking on Download CSV")
                 st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
@@ -136,7 +136,7 @@ in their work.
             if st.checkbox("Click here for Date Arranged in YYYY-MM-DD  Format "):
                 df[selected_columns] = df[selected_columns].astype('datetime64[ns]')
                 df.sort_values(by=selected_columns, inplace=True,ignore_index=True)
-                df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d ")
+                #df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d ")
                 st.write(df.head())
                 st.text("Download the Above Data table by clicking on Download CSV")
                 st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
