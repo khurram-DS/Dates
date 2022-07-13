@@ -127,7 +127,8 @@ in their work.
           df.sort_values(by=selected_columns, inplace=True,ignore_index=True)
                 
           st.write(df.head())
-          ds=df.copy()
+          ds=[]
+          ds=df
           st.text("Download the Above Data table by clicking on Download CSV")
           st.download_button(label='Download CSV',data=ds.to_csv(),mime='text/csv')
                 
