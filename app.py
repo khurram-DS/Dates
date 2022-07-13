@@ -65,8 +65,9 @@ in their work.
         st.subheader("1. Handling Dates")
         st.text("""Here in Handling Dates we can :
 1. Fix the Dates
-2. Download the clean Data.
-3. You can arrange Your Dates in Ascending order""")
+2. Download the clean Data in Format of YYYY:MM:DD
+3. Download the clean Data in Format of YYYY:MM:DD HH:MM:SS
+4. You can arrange Your Dates in Ascending order""")
 
         st.text('------------------------------------------------------------------------------------------------------------------------------')
         
@@ -79,9 +80,9 @@ in their work.
           # get extension and read file
           extension = file.name.split('.')[1]
           if extension.upper() == 'CSV':
-            df = pd.read_csv(file)
+            df = pd.read_csv(file,error_bad_lines=False)
           elif extension.upper() == 'XLSX':
-            df = pd.read_excel(file)
+            df = pd.read_excel(file,error_bad_lines=False)
           
           return df
         file = st.file_uploader("Upload file", type=['csv' 
@@ -101,38 +102,44 @@ in their work.
             
             st.subheader("Fix your Dates")
             all_columns=df.columns.to_list()
-            selected_columns= st.multiselect("Select Date Columns You want to fix", all_columns)
-            
+            selected_columns= st.selectbox("Select Date Columns You want to fix", all_columns)
+            #df[selected_columns]=pd.to_datetime(df[selected_columns],errors='coerce')
           
             
-        st.write("**2. Download the clean Data**")
-        if st.checkbox("Lets Fix the Date"):
-            df[selected_columns]=df[selected_columns].apply(pd.to_datetime,errors='coerce')
-            
-           
+        st.write("**2. Download the clean Data in Format of YYYY:MM:DD**")
+        if st.checkbox("Dates in the Format of YYYY-MM-DD"):
+            df[selected_columns]=pd.to_datetime(df[selected_columns],errors='coerce')
+            df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d")
             st.write(df.head())
             st.text("Download the Above Data table by clicking on Download CSV")
-            
             st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
-     
-            
-            
-            
-            
-        st.write("**3. Lets arrange our Dates in Ascending order**")
+        st.write("**3. Download the clean Data in Format of YYYY:MM:DD HH:MM:SS**")
+        if st.checkbox("Dates in the Format of YYYY-MM-DD HH:MM:SS"):
+            df[selected_columns]=pd.to_datetime(df[selected_columns],errors='coerce')
+            df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d %H:%M:%S")
+            st.write(df.head())
+            st.text("Download the Above Data table by clicking on Download CSV")
+            st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
+        st.write("**4. Lets arrange our Dates in Ascending order**")
         
         if st.checkbox("Arranging Dates in Ascending order"):
-            
-          df[selected_columns] = df[selected_columns].astype('datetime64[ns]')
-          df.sort_values(by=selected_columns, inplace=True,ignore_index=True)
+            #all_columns=df.columns.to_list()
+            #selected_columns= st.selectbox("Select Date Columns You want to fix", all_columns)
+            if st.checkbox("Click here for Date Arranged in YYYY-MM-DD HH:MM:SS Format "):
+                df[selected_columns] = df[selected_columns].astype('datetime64[ns]')
+                df.sort_values(by=selected_columns, inplace=True,ignore_index=True)
+                df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d %H:%M:%S")
+                st.write(df.head())
+                st.text("Download the Above Data table by clicking on Download CSV")
+                st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
                 
-          st.write(df.head())
-          ds=[]
-          ds=df
-          st.text("Download the Above Data table by clicking on Download CSV")
-          #st.download_button(label='Download CSV',data=ds.to_csv(),mime='text/csv')
-                
-           
+            if st.checkbox("Click here for Date Arranged in YYYY-MM-DD  Format "):
+                df[selected_columns] = df[selected_columns].astype('datetime64[ns]')
+                df.sort_values(by=selected_columns, inplace=True,ignore_index=True)
+                df[selected_columns]=df[selected_columns].dt.strftime("%Y-%m-%d ")
+                st.write(df.head())
+                st.text("Download the Above Data table by clicking on Download CSV")
+                st.download_button(label='Download CSV',data=df.to_csv(),mime='text/csv')
                 
         st.text('------------------------------------------------------------------------------------------------------------------------------')
     elif choice=="Creating features":    
